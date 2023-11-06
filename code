@@ -1,0 +1,68 @@
+class Time {
+    private:
+    int hours, minutes, seconds;
+    
+    public:
+    Time(int hr = 0, int min = 0, int sec = 0){hours = hr; minutes = min; seconds = sec;}
+    
+    const Time operator+(const Time&other){
+        Time ans;
+        // int* temp = new int;
+        ans.seconds = seconds + other.seconds;
+        ans.minutes = minutes + other.minutes;
+        ans.hours = hours + other.hours;
+        
+        // for addition OR nums exceeding limits:
+        // checked on visualiser, this only used for t1+t2, add these to show for t1 t2 
+        if (ans.seconds >= 60) {
+            ans.minutes += ans.seconds / 60;
+            ans.seconds %= 60;
+        }
+
+        if (ans.minutes >= 60) {
+            ans.hours += ans.minutes / 60;
+            ans.minutes %= 60;
+        }
+
+        if (ans.hours >= 24) {
+            ans.hours %= 24;
+        }
+        
+        return ans;
+    }
+    
+    const void show (){
+        if (seconds >= 60) {
+            minutes += seconds / 60;
+            seconds %= 60;
+        }
+
+        if (minutes >= 60) {
+            hours += minutes / 60;
+            minutes %= 60;
+        }
+
+        if (hours >= 24) {
+            hours %= 24;
+        }
+        if (hours>=10){
+            cout << hours << ":";
+        }
+        else{
+            cout << "0" << hours << ":";
+        }
+        if (minutes >=10){
+            cout << minutes << ":";
+        }
+        else{
+            cout << "0" << minutes << ":";
+        }
+        if (seconds >=10){
+            cout << seconds <<endl;
+        }
+        else{
+            cout << "0" << seconds << endl;
+        }
+    }
+    
+};
